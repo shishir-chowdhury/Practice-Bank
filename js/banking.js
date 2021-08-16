@@ -15,6 +15,21 @@ function updateTotalField(totalFieldId, amount) {
     const newDepositTotal = previousAmount + amount;
     totalElement.innerText = newDepositTotal;
 }
+/* Update balance with one function */
+function updateBalance(amount, isAdd) {
+    const balanceTotal = document.getElementById('balance-total');
+    const balanceTotalText = balanceTotal.innerText;
+    const previousBalanceTotal = parseFloat(balanceTotalText);
+    if (isAdd == true) {
+        const newBalanceTotal = previousBalanceTotal + amount;
+        balanceTotal.innerText = newBalanceTotal;
+    }
+    else {
+        const newBalanceTotal = previousBalanceTotal - amount;
+        balanceTotal.innerText = newBalanceTotal;
+    }
+
+}
 /* Handle diposit button event */
 document.getElementById('deposit-button').addEventListener('click', function () {
     /* Get the amount deposited */
@@ -36,11 +51,14 @@ document.getElementById('deposit-button').addEventListener('click', function () 
     */
     updateTotalField('deposit-total', newDepositAmount);
     /* Update account balance */
+    /*     
     const balanceTotal = document.getElementById('balance-total');
     const balanceTotalText = balanceTotal.innerText;
     const previousBalanceTotal = parseFloat(balanceTotalText);
     const newBalanceTotal = previousBalanceTotal + newDepositAmount;
-    balanceTotal.innerText = newBalanceTotal;
+    balanceTotal.innerText = newBalanceTotal; 
+    */
+    updateBalance(newDepositAmount, true);
 })
 
 /* Handle withdraw button event */
@@ -62,10 +80,13 @@ document.getElementById('withdraw-button').addEventListener('click', function ()
     */
     updateTotalField('withdraw-total', newWithdrawAmount);
     /* Update account balance */
+    /*     
     const balanceTotal = document.getElementById('balance-total');
     const previousBalancetext = balanceTotal.innerText;
     const previousBalanceTotal = parseFloat(previousBalancetext);
     const newBalanceTotal = previousBalanceTotal - newWithdrawAmount;
     balanceTotal.innerText = newBalanceTotal;
+    */
+    updateBalance(newWithdrawAmount, false);
 })
 
